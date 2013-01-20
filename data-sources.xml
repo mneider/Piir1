@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="hsqldb_embedded-1357907132260-1865160940" provider="generic" driver="hsqldb_embedded" name="HSQLDB - true" create-date="1357907132260" save-password="true" show-system-objects="true" read-only="false">
+		<connection server="" database="${user.home}/i377/Team04d/db;shutdown=true" url="jdbc:hsqldb:file:${user.home}/i377/Team04d/db;shutdown=true" user=""/>
+	</data-source>
+</data-sources>
