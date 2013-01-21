@@ -1,82 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Piir1">
-    <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../jee-juno/eclipse"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
-    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
-        <pathelement location="../../jee-juno/tomcat/lib/annotations-api.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/catalina-ant.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/catalina-ha.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/catalina-tribes.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/catalina.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/ecj-3.6.2.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/el-api.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/jasper-el.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/jasper.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/jsp-api.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/servlet-api.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/tomcat-api.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/tomcat-coyote.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/tomcat-dbcp.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="../../jee-juno/tomcat/lib/tomcat-util.jar"/>
-    </path>
-    <path id="Web App Libraries.libraryclasspath">
-        <pathelement location="WebContent/WEB-INF/lib/commons-dbutils-1.5.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/hsqldb.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
-    </path>
-    <path id="EAR Libraries.libraryclasspath"/>
-    <path id="Piir1.classpath">
-        <pathelement location="build/classes"/>
-        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <pathelement location="WebContent/WEB-INF/lib/commons-dbutils-1.5.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/hsqldb.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
-    </path>
-    <target name="init">
-        <mkdir dir="build/classes"/>
-        <copy includeemptydirs="false" todir="build/classes">
-            <fileset dir="src">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="clean">
-        <delete dir="build/classes"/>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <classpath refid="Piir1.classpath"/>
-        </javac>
-    </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
+<?xml version="1.0" ?>
+<project name="Piir1">
+
+<property name="src.dir" location="src" />
+<property name="build.dir" location="build" />
+<property name="classes.dir" location="${build.dir}/classes" />
+<property name="web_content.dir" location="WebContent" />
+<property name="lib.dir" location="${web_content.dir}/WEB-INF/lib" />
+
+
+
+	
+<target name="init">
+<mkdir dir="${classes.dir}" />
+</target>
+	
+<target name="clean">
+<delete dir="${build.dir}" />
+</target>
+
+
+<target name="compile" depends="clean, init">
+	<javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+</target>
+
+	<target name="war" depends="compile">
+	<war destfile="${build.dir}" webxml="${web_content.dir}/WEB-INF/web.xml">
+	<classes dir="${classes.dir}" />
+	<fileset dir="${web_content.dir}" excludes="**/servlet-api.jar" />
+	</war>
+	</target>
+	
 </project>
