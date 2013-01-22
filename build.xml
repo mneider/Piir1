@@ -8,7 +8,11 @@
 <property name="lib.dir" location="${web_content.dir}/WEB-INF/lib" />
 
 
-
+<path id="compile.classpath">
+<fileset dir="${lib.dir}">
+<include name="*.jar" />
+</fileset>
+</path>
 	
 <target name="init">
 <mkdir dir="${classes.dir}" />
@@ -20,14 +24,16 @@
 
 
 <target name="compile" depends="clean, init">
-	<javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+<javac srcdir="${src.dir}" destdir="${classes.dir}"> 
+	<classpath refid="${lib.dir}\servlet-api.jar" />
+</javac>
 </target>
 
-	<target name="war" depends="compile">
-	<war destfile="${build.dir}" webxml="${web_content.dir}/WEB-INF/web.xml">
-	<classes dir="${classes.dir}" />
-	<fileset dir="${web_content.dir}" excludes="**/servlet-api.jar" />
-	</war>
-	</target>
+<target name="war" depends="compile">	
+<war destfile="${build.dir}" webxml="${web_content.dir}/WEB-INF/web.xml">
+<classes dir="${classes.dir}" />
+<fileset dir="${web_content.dir}" excludes="**\servlet-api.jar" />
+</war>
+</target>
 	
 </project>
