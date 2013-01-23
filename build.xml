@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="Piir1">
+<project name="Piir1" basedir=".">
 
 <property name="project.name" value="${ant.project.name}" />
 <property name="src.dir" location="src" />
@@ -11,9 +11,9 @@
 	
 
 
-	<path id="classpath">
-	        <fileset dir="${lib.dir}" includes="**/*.jar"/>
-	    </path>
+<path id="classpath">
+<fileset dir="${lib.dir}" includes="**/*.jar"/>
+</path>
 
 	
 <target name="init">
