@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="Piir1" default="compile">
+<project name="Piir1" >
 
 <property name="project.name" value="${ant.project.name}" />
 <property name="src.dir" location="src" />
@@ -33,7 +33,7 @@
 	
 <war destfile="${build.dir}/${war.file.name}" webxml="${web_content.dir}/WEB-INF/web.xml">
 <classes dir="${classes.dir}" />
-<fileset dir="${web_content.dir}" />
+<fileset dir="${web_content.dir}" excludes="**\servlet-api.jar" />
 </war>
 </target>
 	
