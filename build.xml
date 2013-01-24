@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="Piir1" basedir=".">
+<project name="Piir1" default="compile">
 
 <property name="project.name" value="${ant.project.name}" />
 <property name="src.dir" location="src" />
