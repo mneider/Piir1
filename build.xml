@@ -33,7 +33,7 @@
 	
 <war destfile="${build.dir}/${war.file.name}" webxml="${web_content.dir}/WEB-INF/web.xml">
 <classes dir="${classes.dir}" />
-<fileset dir="${web_content.dir}" excludes="**\servlet-api.jar" />
+<fileset dir="${web_content.dir}" />
 </war>
 </target>
 	
