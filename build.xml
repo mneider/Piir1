@@ -7,7 +7,7 @@
 <property name="classes.dir" location="${build.dir}/classes" />
 <property name="web_content.dir" location="WebContent" />
 <property name="lib.dir" location="${web_content.dir}/WEB-INF/lib" />
-<property name="war.file.name" value="Piir1.war" />
+<property name="war.file.name" value="Piir04d.war" />
 	
 
 
